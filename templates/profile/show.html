@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <br><br><br><br><br>
+            <div class="card">
+                <div class="card-content">
+                    <p><strong>Usuario: </strong>{{ usuario.user }}</p>
+                    <p><strong>Email: </strong> {{ usuario.user.email }}</p>
+                    <img src="/{{ usuario.profile }}" alt="{{ usuario.user }}">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

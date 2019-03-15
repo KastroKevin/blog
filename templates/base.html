@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'bulma/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+          {% if user.is_authenticated %}
+              <a class="navbar-item letra is-light" href="{% url 'post_index' %}">
+                <i class="fas fa-2x fa-book"></i> KastroBlog
+              </a>
+          {% else %}
+              <a class="navbar-item letra is-light" href="{% url 'login' %}">
+                <i class="fas fa-2x fa-book"></i> KastroBlog
+              </a>
+          {% endif %}
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            {% if user.is_authenticated %}
+                <a class="navbar-item" href="{% url 'post_index' %}">
+                    <i class="fas fa-2x fa-clipboard-list"></i> Post
+                </a>
+                <a class="navbar-item" href="{% url 'post_create' %}">
+                    <i class="fas fa-2x fa-plus-circle"></i> Agregar Post
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+                {% if user.is_authenticated %}
+                    <a class="button is-light" href="{% url 'logout' %}">
+                        <i class="fas fa-sign-out-alt"></i>   Salir
+                    </a>
+                {% else %}
+                    <a class="button is-primary" href="/accounts/register">
+                        <i class="fas fa-user-plus"></i> <strong>Registrarse</strong>
+                    </a>
+                    <a class="button is-light" href="{% url 'login' %}">
+                        <i class="fas fa-sign-in-alt"></i>   Entrar
+                    </a>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container is-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
+<script defer src="https://use.fontawesome.com/releases/v5.7.2/js/solid.js" integrity="sha384-6FXzJ8R8IC4v/SKPI8oOcRrUkJU8uvFK6YJ4eDY11bJQz4lRw5/wGthflEOX8hjL" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.7.2/js/regular.js" integrity="sha384-Gxfqh68NuE4s0o2renzieYkDYVbdJynynsdrB7UG9yEvgpS9TVM+c4bknWfQXUBg" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.7.2/js/fontawesome.js" integrity="sha384-xl26xwG2NVtJDw2/96Lmg09++ZjrXPc89j0j7JHjLOdSwHDHPHiucUjfllW0Ywrq" crossorigin="anonymous"></script>
+</body>
+</html>

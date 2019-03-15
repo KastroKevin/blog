@@ -1,0 +1,34 @@
+body {
+   background-color: #0E1717;
+    min-height: 100vh;
+}
+
+.carta {
+    padding: 20px; margin: 20px;
+}
+
+.blanco {
+    color:white;
+    font-size: 24px;
+}
+
+.alto {
+    height: 450px;
+}
+
+.altoregister {
+    height: 500px;
+}
+.negro {
+    color:black;
+    font-size: 20px;
+}
+
+.letra {
+    color:black;
+    font-size: 26px;
+}
+
+a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
+    color: black;
+}

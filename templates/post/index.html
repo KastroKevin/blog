@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+    <div class="columns is-multiline">
+        <div class="column is-9">
+            <br><br><br>
+            {% for post in posts %}
+                <div class="card carta">
+                    <div class="card-header-title">
+                        <a href="{% url 'post_details' post.id %}">{{ post.title }}</a>
+                    </div>
+                    <div class="card-content">
+                        <img class="card-image" src="/{{ post.image }}" alt="{{ post.title }}">
+                        <br>
+                        <p>{{ post.description }}</p>
+                        <hr>
+                        <i class="fas fa-user"></i>
+                        <p>Autor: <strong>{{ post.user }}</strong></p>
+                        <p class="subtitle is-6 is-pulled-right"> <i class="fas fa-calendar-week"></i>  {{ post.created_at | naturaltime }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+                    <div class="box negro">
+                        {% if is_paginated %}
+                            <div class="pagination is-rounded">
+                                <span class="page-links">
+                                    {% if page_obj.has_previous %}
+                                        <a href="/publication/post?page={{ page_obj.previous_page_number }}" class="pagination-previous">Anterior</a>
+                                    {% endif %}
+                                    <span class="page-list">
+                                        <span class="pagination-link is-current">
+                                            {{ page_obj.number }}
+                                        </span>
+                                    </span>
+                                    {% if page_obj.has_next %}
+                                        <a href="/publication/post?page={{ page_obj.next_page_number }}" class="pagination-next">Siguiente</a>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        {% endif %}
+                    </div>
+        </div>
+        <div class="column is-3">
+            <br><br><br><br><br>
+            <div class="card">
+                <div class="card-content">
+                    <form method="get" class="form-row is-horizontal" action="/publication/post/search/">
+                        <div class="field has-addons">
+                          <div class="control">
+                            <input class="input" type="text" placeholder="Buscar Por Titulo" name="q" minlength="4" required>
+                          </div>
+                          <div class="control">
+                              <button type="submit" class="button is-info"><i class="fas fa-2x fa-search-plus"></i> Buscar</button>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
